@@ -1,0 +1,45 @@
+/*
+ * nRF52840 IR设备树配置
+ * 文件名: nrf52840dk_nrf52840.overlay
+ */
+
+/ {
+    aliases {
+        ir-pwm = &pwm0;
+    };
+    
+    ir_tx: ir_tx {
+        compatible = "pwm-leds";
+        status = "okay";
+        tx_pwm: tx_pwm_0 {
+            pwms = <&pwm0 0 PWM_USEC(26) PWM_POLARITY_NORMAL>;
+            label = "IR TX PWM";
+        };
+    };
+};
+
+&pinctrl {
+    pwm0_default: pwm0_default {
+        group1 {
+            psels = <NRF_PSEL(PWM_OUT0, 1, 11)>;
+        };
+    };
+
+    pwm0_sleep: pwm0_sleep {
+        group1 {
+            psels = <NRF_PSEL(PWM_OUT0, 1, 11)>;
+            low-power-enable;
+        };
+    };
+};
+
+&pwm0 {
+    status = "okay";
+    pinctrl-0 = <&pwm0_default>;
+    pinctrl-1 = <&pwm0_sleep>;
+    pinctrl-names = "default", "sleep";
+};
+
+&gpio0 {
+    status = "okay";
+};

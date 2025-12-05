@@ -1,0 +1,7 @@
+default: ir_project
+build_dir: E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build
+domains:
+  - name: ir_project
+    build_dir: E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project
+flash_order:
+  - ir_project

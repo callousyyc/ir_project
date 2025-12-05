@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/sysbuild/images/CMakeFiles/ir_project"
+		},
+		{
+			"file" : "E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/sysbuild/images/CMakeFiles/ir_project.rule"
+		},
+		{
+			"file" : "E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/sysbuild/images/CMakeFiles/ir_project-complete.rule"
+		},
+		{
+			"file" : "E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/sysbuild/images/ir_project-prefix/src/ir_project-stamp/ir_project-build.rule"
+		},
+		{
+			"file" : "E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/sysbuild/images/ir_project-prefix/src/ir_project-stamp/ir_project-configure.rule"
+		},
+		{
+			"file" : "E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/sysbuild/images/ir_project-prefix/src/ir_project-stamp/ir_project-download.rule"
+		},
+		{
+			"file" : "E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/sysbuild/images/ir_project-prefix/src/ir_project-stamp/ir_project-install.rule"
+		},
+		{
+			"file" : "E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/sysbuild/images/ir_project-prefix/src/ir_project-stamp/ir_project-mkdir.rule"
+		},
+		{
+			"file" : "E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/sysbuild/images/ir_project-prefix/src/ir_project-stamp/ir_project-patch.rule"
+		},
+		{
+			"file" : "E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/sysbuild/images/ir_project-prefix/src/ir_project-stamp/ir_project-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"ir_project"
+		],
+		"name" : "ir_project"
+	}
+}

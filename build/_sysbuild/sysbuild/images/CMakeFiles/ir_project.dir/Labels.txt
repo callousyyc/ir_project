@@ -1,0 +1,13 @@
+# Target labels
+ ir_project
+# Source files and their labels
+E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/sysbuild/images/CMakeFiles/ir_project
+E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/sysbuild/images/CMakeFiles/ir_project.rule
+E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/sysbuild/images/CMakeFiles/ir_project-complete.rule
+E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/sysbuild/images/ir_project-prefix/src/ir_project-stamp/ir_project-build.rule
+E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/sysbuild/images/ir_project-prefix/src/ir_project-stamp/ir_project-configure.rule
+E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/sysbuild/images/ir_project-prefix/src/ir_project-stamp/ir_project-download.rule
+E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/sysbuild/images/ir_project-prefix/src/ir_project-stamp/ir_project-install.rule
+E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/sysbuild/images/ir_project-prefix/src/ir_project-stamp/ir_project-mkdir.rule
+E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/sysbuild/images/ir_project-prefix/src/ir_project-stamp/ir_project-patch.rule
+E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/sysbuild/images/ir_project-prefix/src/ir_project-stamp/ir_project-update.rule

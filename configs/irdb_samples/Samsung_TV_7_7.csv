@@ -1,0 +1,31 @@
+# Samsung TV Remote - IRDB Format
+# Protocol: 1 = NEC1
+# Device: 7
+# Subdevice: 7
+# Format: function_name,protocol,device,subdevice,function
+
+Power,1,7,7,2
+Source,1,7,7,1
+Menu,1,7,7,26
+Up,1,7,7,96
+Down,1,7,7,97
+Left,1,7,7,101
+Right,1,7,7,98
+Enter,1,7,7,104
+Back,1,7,7,88
+Exit,1,7,7,91
+Vol+,1,7,7,7
+Vol-,1,7,7,11
+Mute,1,7,7,15
+Ch+,1,7,7,18
+Ch-,1,7,7,16
+1,1,7,7,4
+2,1,7,7,5
+3,1,7,7,6
+4,1,7,7,8
+5,1,7,7,9
+6,1,7,7,10
+7,1,7,7,12
+8,1,7,7,13
+9,1,7,7,14
+0,1,7,7,17
