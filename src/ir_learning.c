@@ -31,7 +31,7 @@ static struct {
   struct k_timer end_timer;
   bool active;
   uint32_t edge_count;
-  uint64_t start_time_us;
+  uint32_t start_time_us;
 } learn_state;
 
 /* 信号结束检测定时器 */
@@ -86,7 +86,7 @@ static void learning_rx_callback(ir_pulse_t *pulse, void *user_data) {
   /* 第一个脉冲 - 开始录制 */
   if (learn_state.edge_count == 0) {
     LOG_INF("Signal detected, recording...");
-    learn_state.start_time_us = k_cyc_to_us_floor64(k_cycle_get_64());
+    learn_state.start_time_us = k_cyc_to_us_floor32(k_cycle_get_32());
 
     if (learn_state.callback) {
       learn_state.callback(IR_LEARN_RECEIVING, NULL, learn_state.user_data);

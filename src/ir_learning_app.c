@@ -9,7 +9,6 @@
 #include <zephyr/logging/log.h>
 #include <zephyr/shell/shell.h>
 
-
 LOG_MODULE_REGISTER(ir_learn_app, LOG_LEVEL_INF);
 
 /* 学习状态回调 */

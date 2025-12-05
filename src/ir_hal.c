@@ -21,7 +21,7 @@ static struct gpio_callback gpio_cb;
 static struct {
   ir_rx_callback_t callback;
   void *user_data;
-  uint64_t last_edge_us;
+  uint32_t last_edge_us;
   bool last_state;
   bool active;
 } rx_state;
@@ -33,7 +33,7 @@ static void gpio_callback_handler(const struct device *dev,
     return;
   }
 
-  uint64_t now_us = k_cyc_to_us_floor64(k_cycle_get_64());
+  uint32_t now_us = k_cyc_to_us_floor32(k_cycle_get_32());
   int current_state = gpio_pin_get(gpio_dev, IR_RX_PIN);
 
   if (current_state < 0) {
@@ -41,11 +41,19 @@ static void gpio_callback_handler(const struct device *dev,
   }
 
   if (rx_state.last_edge_us > 0) {
-    uint64_t duration = now_us - rx_state.last_edge_us;
+    uint32_t duration;
+
+    /* 处理32位计数器溢出 */
+    if (now_us >= rx_state.last_edge_us) {
+      duration = now_us - rx_state.last_edge_us;
+    } else {
+      /* 溢出情况 */
+      duration = (UINT32_MAX - rx_state.last_edge_us) + now_us + 1;
+    }
 
     if (duration > 0 && duration < IR_MAX_PULSE_US) {
       ir_pulse_t pulse = {
-          .duration_us = (uint32_t)duration,
+          .duration_us = duration,
           .is_mark = !rx_state.last_state // 上一个状态
       };
 
