@@ -398,21 +398,14 @@
 					compatible = "fixed-partitions";
 					#address-cells = < 0x1 >;
 					#size-cells = < 0x1 >;
-					boot_partition: partition@0 {
-						label = "mcuboot";
-						reg = < 0x0 0xc000 >;
-					};
-					slot0_partition: partition@c000 {
+					slot0_partition: partition@0 {
 						label = "image-0";
-						reg = < 0xc000 0x77000 >;
+						reg = < 0x0 0xf0000 >;
 					};
-					slot1_partition: partition@83000 {
-						label = "image-1";
-						reg = < 0x83000 0x75000 >;
-					};
-					storage_partition: partition@f8000 {
+					lfs_partition: partition@F0000 {
 						label = "storage";
-						reg = < 0xf8000 0x8000 >;
+						reg = < 0xf0000 0x10000 >;
+						phandle = < 0x1d >;
 					};
 				};
 			};
@@ -814,6 +807,20 @@
 		tx_pwm: tx_pwm_0 {
 			pwms = < &pwm0 0x0 0x6590 0x0 >;
 			label = "IR TX PWM";
+		};
+	};
+	fstab {
+		compatible = "zephyr,fstab";
+		lfs1: lfs1 {
+			compatible = "zephyr,fstab,littlefs";
+			mount-point = "/lfs";
+			partition = < &lfs_partition >;
+			automount;
+			read-size = < 0x10 >;
+			prog-size = < 0x10 >;
+			cache-size = < 0x40 >;
+			lookahead-size = < 0x20 >;
+			block-cycles = < 0x200 >;
 		};
 	};
 };

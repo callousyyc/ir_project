@@ -1,0 +1,12 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "nrf-connect",
+			"request": "launch",
+			"name": "Launch ir_project",
+			"config": "${workspaceFolder}/build/ir_project",
+			"runToEntryPoint": "main"
+		}
+	]
+}

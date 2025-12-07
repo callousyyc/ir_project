@@ -5,13 +5,15 @@
 
 #include "ir_learning.h"
 #include "ir_service.h"
+#include <stdlib.h> // 添加：atoi
+#include <string.h> // 添加：strcmp, strcpy
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 
 
 LOG_MODULE_REGISTER(ir_app, LOG_LEVEL_INF);
 
-#define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
+/* Zephyr已经定义了ARRAY_SIZE，不需要重复定义 */
 
 /* 嵌入式IRDB数据 - Samsung TV (7,7) */
 static const char samsung_tv_7_7[] = "Power,1,7,7,2\n"

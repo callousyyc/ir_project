@@ -438,6 +438,8 @@ ir_remote_control_SOURCE_DIR:STATIC=E:/2.workspace/2.project/7.ACICT/2.sorce_cod
 BOARD_DIRECTORIES:INTERNAL=C:/ncs/v3.0.2/zephyr/boards/nordic/nrf52840dk
 //DT bindings root directories
 CACHED_DTS_ROOT_BINDINGS:INTERNAL=C:/ncs/v3.0.2/nrf/dts/bindings;C:/ncs/v3.0.2/zephyr/dts/bindings
+CLI_CONFIG_DEBUG_OPTIMIZATIONS:INTERNAL=y
+CLI_CONFIG_DEBUG_THREAD_INFO:INTERNAL=y
 //ADVANCED property for variable: CMAKE_ADDR2LINE
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
@@ -547,7 +549,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=166
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=169
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -603,6 +605,10 @@ HWM:INTERNAL=v2
 //Zephyr hardware model
 HWMv2:INTERNAL=True
 KERNEL_META_PATH:INTERNAL=E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/zephyr.meta
+//shared var
+PM_YML_DEP_FILES:INTERNAL=C:/ncs/v3.0.2/nrf/subsys/partition_manager/pm.yml.file_system;C:/ncs/v3.0.2/nrf/subsys/partition_manager/pm.yml.nvs
+//shared var
+PM_YML_FILES:INTERNAL=E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/modules/nrf/subsys/partition_manager/pm.yml.file_system;E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/modules/nrf/subsys/partition_manager/pm.yml.nvs
 //List of SoC directories for SoC (nrf52840)
 SOC_DIRECTORIES:INTERNAL=C:/ncs/v3.0.2/zephyr/soc/nordic
 //SoC Linker script

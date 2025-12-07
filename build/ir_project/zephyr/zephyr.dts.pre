@@ -1261,6 +1261,22 @@ zephyr_udc0: &usbd {
             label = "IR TX PWM";
         };
     };
+
+
+    fstab {
+        compatible = "zephyr,fstab";
+        lfs1: lfs1 {
+            compatible = "zephyr,fstab,littlefs";
+            mount-point = "/lfs";
+            partition = <&lfs_partition>;
+            automount;
+            read-size = <16>;
+            prog-size = <16>;
+            cache-size = <64>;
+            lookahead-size = <32>;
+            block-cycles = <512>;
+        };
+    };
 };
 
 &pinctrl {
@@ -1287,6 +1303,33 @@ zephyr_udc0: &usbd {
 
 &gpio0 {
     status = "okay";
+};
+
+
+/delete-node/ &boot_partition;
+/delete-node/ &slot0_partition;
+/delete-node/ &slot1_partition;
+/delete-node/ &storage_partition;
+
+
+&flash0 {
+    partitions {
+        compatible = "fixed-partitions";
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+
+        slot0_partition: partition@0 {
+            label = "image-0";
+            reg = <0x00000000 0x000F0000>;
+        };
+
+
+        lfs_partition: partition@F0000 {
+            label = "storage";
+            reg = <0x000F0000 0x00010000>;
+        };
+    };
 };
 # 0 "<command-line>" 2
 # 1 "C:/ncs/v3.0.2/zephyr/misc/empty_file.c"

@@ -13,8 +13,7 @@
 
 /* 配置参数 */
 #define IR_TX_NODE DT_NODELABEL(tx_pwm)
-#define IR_RX_PIN_NODE DT_NODELABEL(gpio1)
-#define IR_RX_PIN 12           // P0.14
+#define IR_RX_PIN 12           // P0.14 用于IR接收
 #define IR_CARRIER_FREQ 38000  // 38kHz载波
 #define IR_PWM_DUTY 33         // 33%占空比
 #define IR_MAX_PULSE_US 100000 // 最大脉冲宽度100ms

@@ -7,14 +7,16 @@
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/logging/log.h>
 
-
 LOG_MODULE_REGISTER(ir_hal, LOG_LEVEL_INF);
 
 /* PWM设备 */
 static const struct pwm_dt_spec pwm_ir = PWM_DT_SPEC_GET(IR_TX_NODE);
 
-/* GPIO设备和引脚 */
-static const struct device *gpio_dev = DEVICE_DT_GET(IR_RX_PIN_NODE);
+/* GPIO设备 - 使用设备树方式获取 */
+#define RX_GPIO_NODE DT_NODELABEL(gpio1)
+static const struct device *gpio_dev = DEVICE_DT_GET(RX_GPIO_NODE);
+
+/* GPIO回调结构 */
 static struct gpio_callback gpio_cb;
 
 /* 接收状态 */
@@ -29,13 +31,19 @@ static struct {
 /* GPIO中断处理 - 接收边沿检测 */
 static void gpio_callback_handler(const struct device *dev,
                                   struct gpio_callback *cb, uint32_t pins) {
+  /* 安全检查 */
   if (!rx_state.active) {
+    return;
+  }
+
+  if (!dev || dev != gpio_dev) {
     return;
   }
 
   uint32_t now_us = k_cyc_to_us_floor32(k_cycle_get_32());
   int current_state = gpio_pin_get(gpio_dev, IR_RX_PIN);
 
+  /* 检查GPIO读取是否成功 */
   if (current_state < 0) {
     return;
   }
@@ -71,46 +79,62 @@ static void gpio_callback_handler(const struct device *dev,
 int ir_hal_init(void) {
   int ret;
 
+  LOG_INF("Initializing IR HAL...");
+
   /* 检查PWM设备 */
   if (!device_is_ready(pwm_ir.dev)) {
     LOG_ERR("PWM device not ready");
     return -ENODEV;
   }
+  LOG_DBG("PWM device ready");
 
   /* 检查GPIO设备 */
+  if (!gpio_dev) {
+    LOG_ERR("GPIO device is NULL");
+    return -ENODEV;
+  }
+
   if (!device_is_ready(gpio_dev)) {
     LOG_ERR("GPIO device not ready");
     return -ENODEV;
   }
+  LOG_DBG("GPIO device ready");
 
   /* 配置RX GPIO为输入，带上拉 */
   ret = gpio_pin_configure(gpio_dev, IR_RX_PIN, GPIO_INPUT | GPIO_PULL_UP);
   if (ret < 0) {
-    LOG_ERR("Failed to configure RX pin: %d", ret);
+    LOG_ERR("Failed to configure RX pin %d: %d", IR_RX_PIN, ret);
     return ret;
   }
+  LOG_DBG("RX pin %d configured", IR_RX_PIN);
 
-  /* 配置GPIO中断 */
+  /* 禁用GPIO中断（初始状态） */
   ret = gpio_pin_interrupt_configure(gpio_dev, IR_RX_PIN, GPIO_INT_DISABLE);
   if (ret < 0) {
     LOG_ERR("Failed to configure interrupt: %d", ret);
     return ret;
   }
 
+  /* 初始化GPIO回调 */
   gpio_init_callback(&gpio_cb, gpio_callback_handler, BIT(IR_RX_PIN));
+
   ret = gpio_add_callback(gpio_dev, &gpio_cb);
   if (ret < 0) {
     LOG_ERR("Failed to add callback: %d", ret);
     return ret;
   }
+  LOG_DBG("GPIO callback added");
 
   /* 初始化接收状态 */
   memset(&rx_state, 0, sizeof(rx_state));
 
   /* 确保PWM初始关闭 */
-  pwm_set_dt(&pwm_ir, 0, 0);
+  ret = pwm_set_dt(&pwm_ir, 0, 0);
+  if (ret < 0) {
+    LOG_WRN("Failed to stop PWM initially: %d", ret);
+  }
 
-  LOG_INF("IR HAL initialized");
+  LOG_INF("IR HAL initialized successfully");
   return 0;
 }
 

@@ -74,12 +74,30 @@ static void learning_timeout_handler(struct k_timer *timer) {
 
 /* HAL接收回调 - 记录时序 */
 static void learning_rx_callback(ir_pulse_t *pulse, void *user_data) {
+  /* 安全检查 */
+  if (!pulse) {
+    LOG_ERR("Pulse is NULL");
+    return;
+  }
+
   if (!learn_state.active) {
     return;
   }
 
   /* 过滤过短的脉冲（噪声） */
   if (pulse->duration_us < MIN_PULSE_US) {
+    return;
+  }
+
+  /* 关键检查：缓冲区是否存在 */
+  if (!learn_state.current_signal.timings) {
+    LOG_ERR("Timing buffer is NULL - learning not initialized!");
+    /* 尝试恢复：停止学习 */
+    learn_state.active = false;
+    ir_hal_rx_stop();
+    if (learn_state.callback) {
+      learn_state.callback(IR_LEARN_ERROR, NULL, learn_state.user_data);
+    }
     return;
   }
 
@@ -95,7 +113,7 @@ static void learning_rx_callback(ir_pulse_t *pulse, void *user_data) {
 
   /* 检查是否超出缓冲区 */
   if (learn_state.edge_count >= IR_LEARNING_MAX_EDGES) {
-    LOG_ERR("Buffer overflow, stopping");
+    LOG_ERR("Buffer overflow (%u edges), stopping", learn_state.edge_count);
     k_timer_stop(&learn_state.end_timer);
     signal_end_handler(NULL);
     return;
@@ -104,6 +122,11 @@ static void learning_rx_callback(ir_pulse_t *pulse, void *user_data) {
   /* 记录时序 */
   learn_state.current_signal.timings[learn_state.edge_count++] =
       pulse->duration_us;
+
+  /* 调试：每10个脉冲打印一次 */
+  if (learn_state.edge_count % 10 == 0) {
+    LOG_DBG("Recorded %u edges", learn_state.edge_count);
+  }
 
   /* 重置信号结束定时器 */
   k_timer_start(&learn_state.end_timer, K_MSEC(SIGNAL_END_TIMEOUT_MS),
@@ -118,7 +141,7 @@ int ir_learning_init(void) {
   k_timer_init(&learn_state.timeout_timer, learning_timeout_handler, NULL);
   k_timer_init(&learn_state.end_timer, signal_end_handler, NULL);
 
-  /* 分配时序缓冲区 */
+  /* 分配时序缓冲区 - 关键！必须在这里分配 */
   learn_state.current_signal.timings =
       k_malloc(IR_LEARNING_MAX_EDGES * sizeof(uint32_t));
 
@@ -127,9 +150,14 @@ int ir_learning_init(void) {
     return -ENOMEM;
   }
 
+  /* 清零缓冲区 */
+  memset(learn_state.current_signal.timings, 0,
+         IR_LEARNING_MAX_EDGES * sizeof(uint32_t));
+
 #ifdef CONFIG_FILE_SYSTEM
   /* 创建存储目录 */
   struct fs_dir_t dir;
+  fs_dir_t_init(&dir);
   int ret = fs_opendir(&dir, LEARNING_STORAGE_PATH);
   if (ret < 0) {
     ret = fs_mkdir(LEARNING_STORAGE_PATH);
@@ -141,7 +169,8 @@ int ir_learning_init(void) {
   }
 #endif
 
-  LOG_INF("IR Learning initialized");
+  LOG_INF("IR Learning initialized, buffer at %p",
+          (void *)learn_state.current_signal.timings);
   return 0;
 }
 
@@ -153,9 +182,21 @@ int ir_learning_start(const char *signal_name, ir_learn_callback_t callback,
     return -EBUSY;
   }
 
-  /* 重置状态 */
-  memset(&learn_state.current_signal, 0,
-         sizeof(ir_learned_signal_t) - sizeof(uint32_t *));
+  /* 检查缓冲区是否已分配 */
+  if (!learn_state.current_signal.timings) {
+    LOG_ERR("Learning not initialized! Call ir_learning_init() first");
+    return -EINVAL;
+  }
+
+  /* 重置信号数据（但保留timings指针） */
+  uint32_t *timings_backup = learn_state.current_signal.timings;
+  memset(&learn_state.current_signal, 0, sizeof(ir_learned_signal_t));
+  learn_state.current_signal.timings = timings_backup;
+
+  /* 清零缓冲区内容 */
+  memset(learn_state.current_signal.timings, 0,
+         IR_LEARNING_MAX_EDGES * sizeof(uint32_t));
+
   learn_state.edge_count = 0;
 
   if (signal_name) {
@@ -166,6 +207,9 @@ int ir_learning_start(const char *signal_name, ir_learn_callback_t callback,
   learn_state.callback = callback;
   learn_state.user_data = user_data;
   learn_state.active = true;
+
+  LOG_DBG("Learning buffer check: timings=%p, count=%u",
+          (void *)learn_state.current_signal.timings, learn_state.edge_count);
 
   /* 启动HAL接收 */
   int ret = ir_hal_rx_start(learning_rx_callback, NULL);

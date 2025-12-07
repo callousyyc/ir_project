@@ -17,6 +17,6 @@ cmake:
      - E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/_sysbuild/empty.conf
 version: 0.1.0
 west:
-  command: C:\ncs\toolchains\0b393f9e1b\opt\bin\Scripts\west build --build-dir e:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build e:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project --pristine --board nrf52840dk/nrf52840 --sysbuild --
+  command: C:\ncs\toolchains\0b393f9e1b\opt\bin\Scripts\west build --build-dir e:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build e:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project --pristine --board nrf52840dk/nrf52840 --sysbuild -- -DCONFIG_DEBUG_OPTIMIZATIONS=y -DCONFIG_DEBUG_THREAD_INFO=y
   topdir: c:\ncs\v3.0.2
   version: 1.2.0

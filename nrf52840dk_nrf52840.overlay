@@ -16,6 +16,22 @@
             label = "IR TX PWM";
         };
     };
+    
+    /* LittleFS挂载配置 */
+    fstab {
+        compatible = "zephyr,fstab";
+        lfs1: lfs1 {
+            compatible = "zephyr,fstab,littlefs";
+            mount-point = "/lfs";
+            partition = <&lfs_partition>;
+            automount;
+            read-size = <16>;
+            prog-size = <16>;
+            cache-size = <64>;
+            lookahead-size = <32>;
+            block-cycles = <512>;
+        };
+    };
 };
 
 &pinctrl {
@@ -42,4 +58,31 @@
 
 &gpio0 {
     status = "okay";
+};
+
+/* 删除现有的分区定义，重新定义 */
+/delete-node/ &boot_partition;
+/delete-node/ &slot0_partition;
+/delete-node/ &slot1_partition;
+/delete-node/ &storage_partition;
+
+/* Flash分区配置 - 简化版本，不使用MCUboot */
+&flash0 {
+    partitions {
+        compatible = "fixed-partitions";
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        /* 应用程序区域 */
+        slot0_partition: partition@0 {
+            label = "image-0";
+            reg = <0x00000000 0x000F0000>;  /* 960KB 用于应用 */
+        };
+
+        /* LittleFS存储分区 */
+        lfs_partition: partition@F0000 {
+            label = "storage";
+            reg = <0x000F0000 0x00010000>;  /* 64KB 用于文件系统 */
+        };
+    };
 };

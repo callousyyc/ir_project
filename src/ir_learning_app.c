@@ -5,9 +5,12 @@
 
 #include "ir_learning.h"
 #include "ir_service.h"
+#include <stdlib.h> // 添加：atoi
+#include <string.h> // 添加：strcmp
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include <zephyr/shell/shell.h>
+
 
 LOG_MODULE_REGISTER(ir_learn_app, LOG_LEVEL_INF);
 
@@ -164,16 +167,19 @@ static int cmd_replay(const struct shell *sh, size_t argc, char **argv) {
 }
 
 /* Shell命令: save - 保存当前学习的信号 */
-static int cmd_save(const struct shell *sh, size_t argc, char **argv) {
-  if (argc < 2) {
-    shell_error(sh, "Usage: save <name>");
-    return -EINVAL;
-  }
-
-  /* 这里需要访问最近学习的信号 */
-  shell_error(sh, "Not implemented - use learning callback to auto-save");
-  return -ENOTSUP;
+#if 0 // 暂时禁用未实现的功能
+static int cmd_save(const struct shell *sh, size_t argc, char **argv)
+{
+    if (argc < 2) {
+        shell_error(sh, "Usage: save <name>");
+        return -EINVAL;
+    }
+    
+    /* 这里需要访问最近学习的信号 */
+    shell_error(sh, "Not implemented - use learning callback to auto-save");
+    return -ENOTSUP;
 }
+#endif
 
 /* Shell命令: list - 列出所有学习的信号 */
 static int cmd_list_learned(const struct shell *sh, size_t argc, char **argv) {

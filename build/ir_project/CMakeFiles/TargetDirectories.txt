@@ -108,8 +108,11 @@ E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/subsys/debug/CMakeFiles/rebuild_cache.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/subsys/fb/CMakeFiles/edit_cache.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/subsys/fb/CMakeFiles/rebuild_cache.dir
+E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/subsys/fs/CMakeFiles/subsys__fs.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/subsys/fs/CMakeFiles/edit_cache.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/subsys/fs/CMakeFiles/rebuild_cache.dir
+E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/subsys/fs/nvs/CMakeFiles/edit_cache.dir
+E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/subsys/fs/nvs/CMakeFiles/rebuild_cache.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/subsys/ipc/CMakeFiles/edit_cache.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/subsys/ipc/CMakeFiles/rebuild_cache.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/subsys/logging/CMakeFiles/edit_cache.dir
@@ -140,6 +143,8 @@ E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/subsys/stats/CMakeFiles/rebuild_cache.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/subsys/storage/CMakeFiles/edit_cache.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/subsys/storage/CMakeFiles/rebuild_cache.dir
+E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/subsys/storage/flash_map/CMakeFiles/edit_cache.dir
+E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/subsys/storage/flash_map/CMakeFiles/rebuild_cache.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/subsys/task_wdt/CMakeFiles/edit_cache.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/subsys/task_wdt/CMakeFiles/rebuild_cache.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/subsys/testsuite/CMakeFiles/edit_cache.dir
@@ -187,6 +192,9 @@ E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/drivers/console/CMakeFiles/drivers__console.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/drivers/console/CMakeFiles/edit_cache.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/drivers/console/CMakeFiles/rebuild_cache.dir
+E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/drivers/flash/CMakeFiles/edit_cache.dir
+E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/drivers/flash/CMakeFiles/drivers__flash.dir
+E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/drivers/flash/CMakeFiles/rebuild_cache.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/drivers/gpio/CMakeFiles/drivers__gpio.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/drivers/gpio/CMakeFiles/edit_cache.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/zephyr/drivers/gpio/CMakeFiles/rebuild_cache.dir
@@ -345,6 +353,7 @@ E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/module
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/modules/liblc3/CMakeFiles/rebuild_cache.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/modules/libmetal/CMakeFiles/edit_cache.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/modules/libmetal/CMakeFiles/rebuild_cache.dir
+E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/modules/littlefs/CMakeFiles/modules__littlefs.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/modules/littlefs/CMakeFiles/edit_cache.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/modules/littlefs/CMakeFiles/rebuild_cache.dir
 E:/2.workspace/2.project/7.ACICT/2.sorce_code/ir_project/build/ir_project/modules/loramac-node/CMakeFiles/edit_cache.dir

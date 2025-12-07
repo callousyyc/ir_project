@@ -10,7 +10,6 @@
 #include <stddef.h>
 #include <stdint.h>
 
-
 /* 学习的信号最大长度 */
 #define IR_LEARNING_MAX_EDGES 512
 #define IR_LEARNING_MAX_DURATION_US 100000
@@ -71,6 +70,8 @@ int ir_learning_export_raw(const ir_learned_signal_t *signal, char *buf,
 
 /* 从原始格式导入 */
 int ir_learning_import_raw(ir_learned_signal_t *signal, const char *raw_data);
+
+void test_ir_learning(void);
 
 /* 分析信号特征 */
 typedef struct {
